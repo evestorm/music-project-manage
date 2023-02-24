@@ -5,6 +5,7 @@
     <vxe-button @click="loadData(500000)">加载50w条</vxe-button>
   </p>
   <p>
+    <!--虚拟 dom 用 vxe-list-->
     <vxe-list height="240" class="my-list" :loading="data.loading" :data="data.list">
       <template #default="{ items }">
         <span style="display: block" class="my-list-item" v-for="(item, index) in items" :key="index">{{ item.label }}</span>
