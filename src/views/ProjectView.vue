@@ -1,13 +1,15 @@
 <template>
   <!--<Demo />-->
   <!--<Toolbar />-->
-  <VirtualDOMList />
+  <!--<VirtualDOMList />-->
+  <Config />
 </template>
 
 <script setup>
 import Demo from '@/components/basic/demo.vue';
 import Toolbar from '@/components/basic/toolbar.vue';
 import VirtualDOMList from "@/components/basic/virtualDOMList.vue";
+import Config from '@/components/basic/config.vue';
 </script>
 
 <style scoped lang="scss"></style>
