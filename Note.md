@@ -28,7 +28,6 @@ Vue.js - The Progressive JavaScript Framework
 
 ```shell
 npm install axios -S # 网络请求
-npm install xe-utils vxe-table -S # vxe-table
 npm install sass -D # 支持 sass
 npm install vuex -S # 状态管理器
 ```
@@ -114,3 +113,29 @@ export default router
 ## 新增 store 文件
 
 - `src/stores/*`
+
+# vxe-table 使用
+
+```shell
+npm install xe-utils vxe-table
+```
+
+安装插件
+
+```js
+import { App, createApp } from 'vue'
+import VXETable from 'vxe-table'
+import 'vxe-table/lib/style.css'
+
+function useTable (app: App) {
+  app.use(VXETable)
+
+  // 给 vue 实例挂载内部对象，例如：
+  // app.config.globalProperties.$XModal = VXETable.modal
+  // app.config.globalProperties.$XPrint = VXETable.print
+  // app.config.globalProperties.$XSaveFile = VXETable.saveFile
+  // app.config.globalProperties.$XReadFile = VXETable.readFile
+}
+
+createApp(App).use(useTable).mount('#app')
+```
