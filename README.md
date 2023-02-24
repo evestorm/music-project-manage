@@ -1,2 +1,5 @@
 # music-project-manage
-音乐软件管理
+
+## Introduction
+
+Project Management for Music
