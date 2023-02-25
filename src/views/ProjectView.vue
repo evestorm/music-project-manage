@@ -4,7 +4,8 @@
   <!--<VirtualDOMList />-->
   <!--<Config />-->
   <!--<GroupTable />-->
-  <SortView />
+  <!--<SortView />-->
+  <FilterView />
 </template>
 
 <script setup>
@@ -14,7 +15,7 @@ import VirtualDOMList from "@/components/basic/virtualDOMList.vue";
 import Config from '@/components/basic/config.vue';
 import GroupTable from '@/components/basic/groupTable.vue';
 import SortView from '@/components/basic/sort.vue';
-import Sort from "@/components/basic/sort.vue";
+import FilterView from '@/components/basic/filter.vue';
 </script>
 
 <style scoped lang="scss"></style>
