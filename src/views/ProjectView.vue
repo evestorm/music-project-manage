@@ -2,8 +2,8 @@
   <!--<Demo />-->
   <!--<Toolbar />-->
   <!--<VirtualDOMList />-->
-  <!--<Config />-->
-  <GroupTable />
+  <Config />
+  <!--<GroupTable />-->
 </template>
 
 <script setup>

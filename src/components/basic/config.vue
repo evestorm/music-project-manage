@@ -15,10 +15,19 @@
         <vxe-button @click="toggleFixedColumn(5, 'right')">切换第六列固定</vxe-button>
       </template>
     </vxe-toolbar>
+    <vxe-toolbar>
+      <!--NOTE: 高亮行-->
+      <template #buttons>
+        <vxe-button @click="customTableRef.setCurrentRow(tableData1[1])">设置第二行选中</vxe-button>
+        <vxe-button @click="customTableRef.clearCurrentRow()">取消选中</vxe-button>
+        <vxe-button @click="getCurrentEvent">获取高亮行</vxe-button>
+      </template>
+    </vxe-toolbar>
     <vxe-table
         ref="customTableRef"
         class="custom-table"
         @cell-click="cellClickEvent"
+        @current-change="currentChangeEvent"
         :="config">
       <!--NOTE: 设置 type=seq 开启序号列-->
       <!--NOTE: 固定列 left | right-->
@@ -41,6 +50,7 @@
 
 <script setup>
 import {reactive, ref} from "vue";
+import { VXETable } from 'vxe-table'
 
 const allAlign = ref('');
 const tableData1 = ref([
@@ -83,10 +93,19 @@ const cellClassName = ({ row, column }) => {
   }
   return null
 }
+// NOTE: 单元格点击事件 @cell-click
 const cellClickEvent = ({ row, column }) => {
   selectCell.row = row
   selectCell.column = column
   console.log(row, column)
+}
+// 行选中事件 @current-change
+const currentChangeEvent = ({ rowIndex }) => {
+  console.log(`行选中事件 ${rowIndex}`);
+}
+const getCurrentEvent = () => {
+  const $table = customTableRef.value
+  VXETable.modal.alert(JSON.stringify($table.getCurrentRecord()))
 }
 const headerCellStyle = ({ column }) => {
   if (column.field === 'name') {
@@ -140,6 +159,7 @@ const config = reactive({
   rowConfig: {
     isHover: true, // 行 hover 高亮
     height: 80, // 修改行高，可以通过 show-overflow 和 row-config.height 修改行的高度
+    isCurrent: true, // 行选中
   },
   size: 'mini', // table 尺寸 [medium / small / mini]
   // seqConfig: {
@@ -161,6 +181,7 @@ const config = reactive({
   showHeader: true, // 显示隐藏表头
   columnConfig: {
     resizable: true, // 通过设置 column-config.resizable 属性启用列宽拖动功能
+    isCurrent: true, // 高亮当前列，当前列是唯一的，通过设置 column-config.isCurrent 参数
   },
   tooltipConfig: {
     // 通过 tooltip-config.showAll 开启全表工具提示，还可以配合 contentMethod 方法重写默认的提示内容，显示逻辑完全自定义控制，可以返回 null 使用默认的提示消息
