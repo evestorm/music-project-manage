@@ -30,6 +30,9 @@ Vue.js - The Progressive JavaScript Framework
 npm install axios -S # 网络请求
 npm install sass -D # 支持 sass
 npm install vuex -S # 状态管理器
+npm install element-plus -S # 饿了么Vue3组件
+npm install qs -S
+npm install moment -S
 ```
 
 ## 删除不要的文件
