@@ -139,3 +139,48 @@ function useTable (app: App) {
 
 createApp(App).use(useTable).mount('#app')
 ```
+
+# 相关配置
+
+## unplugin-auto-import、unplugin-vue-components
+
+```shell
+npm install unplugin-auto-import unplugin-vue-components -D
+```
+
+经过上面的配置后，便可以在 vue 项目中的任意的 SFC 中使用任意组件而不用再手动引入了，包括其对应的样式也不用手动引入。
+
+来源：https://xie.infoq.cn/article/e576f022653a7e0cb872038f1
+
+更新 `vite.config.js`
+
+```js
+import { fileURLToPath, URL } from 'node:url';
+
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+
+import AutoImport from 'unplugin-auto-import/vite';
+import Components from 'unplugin-vue-components/vite';
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [
+    vue(),
+    AutoImport({
+      resolvers: [ElementPlusResolver()],
+    }),
+    Components({
+      resolvers: [ElementPlusResolver()],
+    }),
+  ],
+  resolve: {
+    extensions: ['.js', '.vue', '.json'],
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
+  },
+})
+
+```
